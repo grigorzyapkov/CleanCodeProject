@@ -1,9 +1,6 @@
 package com.fmi.zyapkov.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +11,13 @@ public class Student extends Person {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @Column
     private int grade;
+
+    @Column
     private int facultyNumber;
+
+    @ManyToMany
     private List<Course> completedCourses;
 
     protected Student(){

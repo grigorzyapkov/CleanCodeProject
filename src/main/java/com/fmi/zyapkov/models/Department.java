@@ -1,9 +1,6 @@
 package com.fmi.zyapkov.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -13,8 +10,13 @@ public class Department {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String name;
+
+    @OneToOne
     private Lecturer leader;
+
+    @OneToMany
     private List<Lecturer> lecturers;
 
     protected Department(){

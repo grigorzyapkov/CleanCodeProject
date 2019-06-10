@@ -1,9 +1,6 @@
 package com.fmi.zyapkov.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Course {
@@ -12,10 +9,19 @@ public class Course {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Lecturer lecturer;
+
+    @Column
     private int maxNumberOfStudents;
+
+    @Column
     private int credits;
+
+    @Column
     private Category category;
 
     protected Course(){
