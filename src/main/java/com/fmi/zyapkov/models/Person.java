@@ -1,9 +1,23 @@
 package com.fmi.zyapkov.models;
 
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+@MappedSuperclass
 public class Person {
 
+    @NotEmpty
     private String firstName;
+
+    @NotEmpty
     private String lastName;
+
+    @NotNull
+    @Min(1)
+    @Max(100)
     private int age;
 
     protected Person(){

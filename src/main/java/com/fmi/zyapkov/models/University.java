@@ -1,30 +1,29 @@
 package com.fmi.zyapkov.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.List;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class University {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
+    @NotEmpty
     private String name;
-    private Lecturer dean;
-    private List<Department> departments;
 
-    protected University(){
+    protected University() {
 
     }
 
-    public University(String name, Lecturer dean, List<Department> departments) {
+    public University(String name) {
         this.name = name;
-        this.dean = dean;
-        this.departments = departments;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -33,21 +32,5 @@ public class University {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Lecturer getDean() {
-        return dean;
-    }
-
-    public void setDean(Lecturer dean) {
-        this.dean = dean;
-    }
-
-    public List<Department> getDepartments() {
-        return departments;
-    }
-
-    public void setDepartments(List<Department> departments) {
-        this.departments = departments;
     }
 }

@@ -1,9 +1,9 @@
 package com.fmi.zyapkov.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Course {
@@ -12,22 +12,30 @@ public class Course {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @Column
+    @NotEmpty
     private String name;
-    private Lecturer lecturer;
-    private int maxNumberOfStudents;
+
+    @Column
+    @Min(1)
+    @Max(10)
     private int credits;
+
+    @Column
     private Category category;
 
     protected Course(){
 
     }
 
-    public Course(String name, Lecturer lecturer, int maxNumberOfStudents, int credits, Category category) {
+    public Course(String name, int credits, Category category) {
         this.name = name;
-        this.lecturer = lecturer;
-        this.maxNumberOfStudents = maxNumberOfStudents;
         this.credits = credits;
         this.category = category;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -36,22 +44,6 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Lecturer getLecturer() {
-        return lecturer;
-    }
-
-    public void setLecturer(Lecturer lecturer) {
-        this.lecturer = lecturer;
-    }
-
-    public int getMaxNumberOfStudents() {
-        return maxNumberOfStudents;
-    }
-
-    public void setMaxNumberOfStudents(int maxNumberOfStudents) {
-        this.maxNumberOfStudents = maxNumberOfStudents;
     }
 
     public int getCredits() {
