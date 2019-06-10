@@ -1,12 +1,25 @@
 package com.fmi.zyapkov.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
+@Entity
 public class Department {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
     private String name;
     private Lecturer leader;
     private List<Lecturer> lecturers;
+
+    protected Department(){
+
+    }
 
     public Department(String name, Lecturer leader, List<Lecturer> lecturers) {
         this.name = name;

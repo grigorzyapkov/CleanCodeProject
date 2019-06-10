@@ -1,13 +1,26 @@
 package com.fmi.zyapkov.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Student extends Person {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
     private int grade;
     private int facultyNumber;
     private List<Course> completedCourses;
+
+    protected Student(){
+
+    }
 
     public Student(String firstName, String lastName, int age) {
         super(firstName, lastName, age);
