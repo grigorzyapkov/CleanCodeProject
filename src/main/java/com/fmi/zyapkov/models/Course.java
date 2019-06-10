@@ -1,12 +1,26 @@
 package com.fmi.zyapkov.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Course {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
     private String name;
     private Lecturer lecturer;
     private int maxNumberOfStudents;
     private int credits;
     private Category category;
+
+    protected Course(){
+
+    }
 
     public Course(String name, Lecturer lecturer, int maxNumberOfStudents, int credits, Category category) {
         this.name = name;
