@@ -1,6 +1,9 @@
 package com.fmi.zyapkov.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +15,17 @@ public class Student extends Person {
     private Long id;
 
     @Column
+    @Min(1)
+    @Max(4)
     private int grade;
 
     @Column
+    @Min(1)
+    @Max(10000)
     private int facultyNumber;
 
-    @ManyToMany
+    @NotNull
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Course> completedCourses;
 
     protected Student(){
@@ -29,6 +37,10 @@ public class Student extends Person {
         this.grade = 0;
         this.facultyNumber = 0;
         this.completedCourses = new ArrayList<>();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public int getGrade() {
@@ -53,5 +65,13 @@ public class Student extends Person {
 
     public void setCompletedCourses(List<Course> completedCourses) {
         this.completedCourses = completedCourses;
+    }
+
+    public void addCompletedCourse(Course course){
+        completedCourses.add(course);
+    }
+
+    public void incrementGrade(){
+        grade++;
     }
 }

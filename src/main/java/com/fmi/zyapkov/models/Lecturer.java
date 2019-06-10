@@ -1,32 +1,39 @@
 package com.fmi.zyapkov.models;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class Lecturer extends Person{
+public class Lecturer extends Person {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
-    @OneToMany(mappedBy = "lecturer")
-    private List<Course> courses;
+    @NotNull
+    @Valid
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Student> students;
 
-    protected Lecturer(){
+    protected Lecturer() {
     }
 
-    public Lecturer(String firstName, String lastName, int age, List<Course> courses) {
+    public Lecturer(String firstName, String lastName, int age, List<Student> students) {
         super(firstName, lastName, age);
-        this.courses = courses;
+        this.students = students;
     }
 
-    public List<Course> getCourses() {
-        return courses;
+    public Long getId() {
+        return id;
     }
 
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }
