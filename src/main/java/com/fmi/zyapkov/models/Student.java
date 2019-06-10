@@ -32,10 +32,10 @@ public class Student extends Person {
 
     }
 
-    public Student(String firstName, String lastName, int age) {
+    public Student(String firstName, String lastName, int age, int grade, int facultyNumber) {
         super(firstName, lastName, age);
-        this.grade = 0;
-        this.facultyNumber = 0;
+        this.grade = grade;
+        this.facultyNumber = facultyNumber;
         this.completedCourses = new ArrayList<>();
     }
 
