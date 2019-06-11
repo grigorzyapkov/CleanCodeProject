@@ -36,4 +36,8 @@ public class Lecturer extends Person {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
+
+    public void addStudent(Student student){
+        students.add(student);
+    }
 }
