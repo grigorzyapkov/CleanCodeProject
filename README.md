@@ -1,1 +1,1 @@
-# University Project made to present basic clean code style guides
+# University project presenting the basics clean code style guides.
